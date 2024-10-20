@@ -26,7 +26,7 @@ from multiprocessing import Process, freeze_support
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 parser = argparse.ArgumentParser(description="Project Skydrop Scripts by Wags", formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-parser.add_argument('-v', '--version', action='version', version='1.0.1')
+parser.add_argument('-v', '--version', action='version', version='1.0.2')
 args = parser.parse_args()
 config = vars(args)
 
@@ -505,9 +505,13 @@ So, with that all being said...
                 file = ""
             main(runopt, file)
         except KeyboardInterrupt:
-            runopt = input("\n\n\nWhich script do you wish to run? (1-5) ")
-            if(int(runopt) == 1 or int(runopt) == 4 or int(runopt) == 5):
+            runopt = input("\n\n\nWhich script do you wish to run? (1-5, or \"exit\" to exit) ")
+            if runopt == "exit":
+                raise ValueError
+            elif(int(runopt) == 1 or int(runopt) == 4 or int(runopt) == 5):
                 file = input("Which file do you wish to run against? (bounty/scroll) ")
+            else:
+                file = ""
             main(runopt, file)
         except ValueError:
             sys.exit()
