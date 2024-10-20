@@ -55,9 +55,9 @@ natch = {}
 for idx, namecoord in enumerate(matches2):
     print(f"Index #{idx}: {namecoord[0]} ({namecoord[1][0]})")
     if(names2[0] == ''.join(map(str, namecoord[1]))):
-        natch[1] = namecoord[1][0]
-    elif(names2[1] == ''.join(map(str, namecoord[1]))):
         natch[0] = namecoord[1][0]
+    elif(names2[1] == ''.join(map(str, namecoord[1]))):
+        natch[1] = namecoord[1][0]
 
 try:
     print(f"\nLat: {int(natch[0])}.{int(''.join(map(str, matches[0][1])))}{int(''.join(map(str, matches[0][2])))}, Lon: -{int(natch[1])}.{int(''.join(map(str, matches[1][1])))}{int(''.join(map(str, matches[1][2])))}")

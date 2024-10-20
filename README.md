@@ -17,6 +17,8 @@ This is a repository for hosting [Project Skydrop](https://projectskydrop.com/) 
 - [recover.py](https://github.com/wagwan-piffting-blud/project-skydrop/blob/main/recover.py)
   - Recovers a Bitcoin wallet using the 12 secret words specified.
   - Based on a script by [MinightDev](https://github.com/MinightDev/BTC-Wallet-Recover).
+- [table_statistics.py](https://github.com/wagwan-piffting-blud/project-skydrop/blob/main/table_statistics.py)
+  - Displays statistics on both the mountain name and secret word tables.
 
 _How_ do I use this stuff?
 ---
