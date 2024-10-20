@@ -23,7 +23,7 @@ _How_ do I use this stuff?
 Generally, usage is as follows:
 
 1. Install a copy of Python 3.12 (latest available as of writing this is Python 3.13).
-2. Install the requirements file using PIP (`pip install --user -r requirements.txt` in a terminal).
+2. Install the requirements file using PIP (`pip install -r requirements.txt` in a terminal).
 3. Run the script of your choice (`python [file_name].py` in a terminal after step 2).
 
 _Why_?
@@ -33,3 +33,11 @@ When I was told about Project Skydrop, initially I was confused as to if I would
 _Who_ am I?
 ---
 I'm Wags, and I make a variety of things for the Internet. You can find my personal website [here](https://wagspuzzle.space/).
+
+_Shoutouts_
+---
+Shoutouts to various members of the Project Skydrop Community are as follows:
+
+- [Bogie](https://github.com/bogiesmalls)
+- heyagbay
+- [Vapok](https://github.com/Vapok)
