@@ -1,0 +1,8 @@
+bip32utils
+mnemonic
+requests
+asyncio
+tqdm
+pandas
+nltk
+fuzzywuzzy
