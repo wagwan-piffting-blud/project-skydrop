@@ -105,7 +105,7 @@ def process_permutation(words, codebook, my_file):
     tqdm.write(output)
     asyncio.get_running_loop().stop()
     
-    return output;
+    return output
 
 with open(WORD_LIST, 'r') as f:
     all_words = [line.strip() for line in f]
