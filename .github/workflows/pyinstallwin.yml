@@ -35,6 +35,16 @@ jobs:
         Set-Variable -Name versionnum -Value (./dist/ProjectSkydropScripts.exe --version)
         Set-Variable -Name platform -Value (echo "-win")
         "versionnum=$versionnum$platform" >> $env:GITHUB_ENV
+    - name: zip
+      id: create-zip
+      shell: pwsh
+      run: |
+        $filesToInclude = @(
+            ".\dist\ProjectSkydropScripts.exe",
+            ".\scroll.htm ",
+            ".\bounty.htm"
+        )
+        Compress-Archive -Path $filesToInclude -DestinationPath ".\dist\my-release-files.zip"
     - name: release
       id: create_release
       uses: actions/create-release@v1
@@ -52,6 +62,6 @@ jobs:
         GITHUB_TOKEN: ${{ github.token }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./dist/ProjectSkydropScripts.exe
-        asset_name: ProjectSkydropScripts.exe
-        asset_content_type: application/x-msdownload
+        asset_path: ./dist/my-release-files.zip
+        asset_name: ProjectSkydropScripts.zip
+        asset_content_type: application/zip
