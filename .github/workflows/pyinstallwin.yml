@@ -25,7 +25,7 @@ jobs:
     - run: pyinstaller -F main_script.py
     - name: artifact
       id: artifact
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         path: dist/*
     - name: version
