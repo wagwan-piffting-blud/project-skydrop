@@ -19,6 +19,8 @@ This is a repository for hosting [Project Skydrop](https://projectskydrop.com/) 
   - Based on a script by [MinightDev](https://github.com/MinightDev/BTC-Wallet-Recover).
 - [table_statistics.py](https://github.com/wagwan-piffting-blud/project-skydrop/blob/main/table_statistics.py)
   - Displays statistics on both the mountain name and secret word tables.
+- [ProjectSkydropScripts.py](https://github.com/wagwan-piffting-blud/project-skydrop/blob/main/ProjectSkydropScripts.py)
+  - All of the above scripts in a more easy-to-use format. **This file is the only one that will receive updates in the future, if any updates are needed.**
 
 _How_ do I use this stuff?
 ---
@@ -28,6 +30,14 @@ Generally, usage is as follows:
 2. Install a copy of [Python 3.12](https://www.python.org/downloads/) for your Operating System (latest available as of writing this is Python 3.13).
 3. Install the requirements file using PIP (`pip install -r requirements.txt` in a terminal).
 4. Run the script of your choice (`python [file_name].py` in a terminal after step 2).
+
+Or (NEW!):
+
+1. Download the release ProjectSkydropScripts.zip for either Windows or Linux.
+2. Unextract the archive.
+3. Run the .exe located within.
+
+If you don't trust random executables, that's totally understandable, and in fact, you shouldn't! But, this one is just taken from the ProjectSkydropScripts.py file and run through a tool called `pyinstaller` for ease of use by everyone, even those not as technical as others. If you'd rather go the straight Python route, see instructions above.
 
 _Why_?
 ---
