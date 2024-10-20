@@ -1,0 +1,67 @@
+name: Package Application with Pyinstaller (Linux)
+on:
+  push:
+    branches: [ main ]
+    tags:
+      - "*"
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+    steps:
+    - name: checkout
+      id: checkout
+      uses: actions/checkout@v4
+    - name: python
+      id: python
+      uses: actions/setup-python@v5
+      with:
+        python-version: 3.12
+    - run: pip install bip32utils mnemonic matplotlib requests asyncio tqdm pandas nltk fuzzywuzzy lxml python-Levenshtein pyinstaller
+    - run: pyinstaller -F ProjectSkydropScripts.py
+    - name: artifact
+      id: artifact
+      uses: actions/upload-artifact@v4
+      with:
+        path: dist/*
+    - name: version
+      id: version
+      shell: pwsh
+      run: |
+        Set-Variable -Name versionnum -Value (./dist/ProjectSkydropScripts --version)
+        Set-Variable -Name platform -Value (echo "-linux")
+        "versionnum=$versionnum$platform" >> $env:GITHUB_ENV
+    - name: zip
+      id: create-zip
+      shell: pwsh
+      run: |
+        $filesToInclude = @(
+            ".\dist\ProjectSkydropScripts",
+            ".\scroll.htm",
+            ".\bounty.htm"
+        )
+        Compress-Archive -Path $filesToInclude -DestinationPath ".\dist\my-release-files.zip"
+    - name: release
+      id: create_release
+      uses: actions/create-release@v1
+      with:
+        draft: false
+        prerelease: false
+        release_name: ${{ env.versionnum }}
+        tag_name: ${{ env.versionnum }}
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
+    - name: linux
+      id: linux
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./dist/my-release-files.zip
+        asset_name: ProjectSkydropScripts.zip
+        asset_content_type: application/zip
