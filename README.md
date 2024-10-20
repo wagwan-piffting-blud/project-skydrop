@@ -24,9 +24,10 @@ _How_ do I use this stuff?
 ---
 Generally, usage is as follows:
 
-1. Install a copy of Python 3.12 (latest available as of writing this is Python 3.13).
-2. Install the requirements file using PIP (`pip install -r requirements.txt` in a terminal).
-3. Run the script of your choice (`python [file_name].py` in a terminal after step 2).
+1. Copy the repository, either by downloading the .ZIP file from GitHub directly, or running `git clone`.
+2. Install a copy of [Python 3.12](https://www.python.org/downloads/) for your Operating System (latest available as of writing this is Python 3.13).
+3. Install the requirements file using PIP (`pip install -r requirements.txt` in a terminal).
+4. Run the script of your choice (`python [file_name].py` in a terminal after step 2).
 
 _Why_?
 ---
