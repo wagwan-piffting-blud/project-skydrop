@@ -15,14 +15,14 @@ jobs:
     steps:
     - name: checkout
       id: checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
     - name: python
       id: python
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v5
       with:
         python-version: 3.12
     - run: pip install bip32utils mnemonic requests asyncio tqdm pandas nltk fuzzywuzzy lxml python-Levenshtein pyinstaller
-    - run: pyinstaller -F main_script.py
+    - run: pyinstaller -F ProjectSkydropScripts.py
     - name: artifact
       id: artifact
       uses: actions/upload-artifact@v4
