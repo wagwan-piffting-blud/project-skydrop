@@ -41,7 +41,7 @@ jobs:
       run: |
         $filesToInclude = @(
             ".\dist\ProjectSkydropScripts.exe",
-            ".\scroll.htm ",
+            ".\scroll.htm",
             ".\bounty.htm"
         )
         Compress-Archive -Path $filesToInclude -DestinationPath ".\dist\my-release-files.zip"
