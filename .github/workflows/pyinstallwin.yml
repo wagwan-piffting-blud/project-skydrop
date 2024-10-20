@@ -1,0 +1,57 @@
+name: Package Application with Pyinstaller (Windows)
+on:
+  push:
+    branches: [ main ]
+    tags:
+      - "*"
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: self-hosted
+    strategy:
+      fail-fast: false
+    steps:
+    - name: checkout
+      id: checkout
+      uses: actions/checkout@v3
+    - name: python
+      id: python
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.12
+    - run: pip install bip32utils mnemonic requests asyncio tqdm pandas nltk fuzzywuzzy lxml python-Levenshtein pyinstaller
+    - run: pyinstaller -F main_script.py
+    - name: artifact
+      id: artifact
+      uses: actions/upload-artifact@v2
+      with:
+        path: dist/*
+    - name: version
+      id: version
+      shell: pwsh
+      run: |
+        Set-Variable -Name versionnum -Value (./dist/ProjectSkydropScripts.exe --version)
+        Set-Variable -Name platform -Value (echo "-win")
+        "versionnum=$versionnum$platform" >> $env:GITHUB_ENV
+    - name: release
+      id: create_release
+      uses: actions/create-release@v1
+      with:
+        draft: false
+        prerelease: false
+        release_name: ${{ env.versionnum }}
+        tag_name: ${{ env.versionnum }}
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
+    - name: windows
+      id: windows
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./dist/ProjectSkydropScripts.exe
+        asset_name: ProjectSkydropScripts.exe
+        asset_content_type: application/x-msdownload
