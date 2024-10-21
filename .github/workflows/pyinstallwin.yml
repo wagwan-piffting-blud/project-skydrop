@@ -1,11 +1,5 @@
 name: Package Application with Pyinstaller (Windows)
 on:
-  push:
-    branches: [ main ]
-    tags:
-      - "*"
-  pull_request:
-    branches: [ main ]
   workflow_dispatch:
 jobs:
   build:
@@ -42,7 +36,9 @@ jobs:
         $filesToInclude = @(
             ".\dist\ProjectSkydropScripts.exe",
             ".\scroll.htm",
-            ".\bounty.htm"
+            ".\bounty.htm",
+            ".\scroll.txt",
+            ".\bounty.txt"
         )
         Compress-Archive -Path $filesToInclude -DestinationPath ".\dist\my-release-files.zip"
     - name: release
